@@ -1,8 +1,3 @@
-Host kbc-cloud
-    HostName 132.164.80.78
-    User mmaier
-    IdentityFile ~/.ssh/lit_marcel
-
 
 Host snuelx08
     HostName 172.16.0.183

@@ -1,15 +1,8 @@
-Host kbc-cloud
-    HostName 132.164.80.78
-    User mmaier
-    IdentityFile ~/.ssh/lit_marcel
-
-
-
-
 Host snuelx08
     HostName 172.16.0.183
     User root
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -22,10 +15,12 @@ Host fob/prod.cluster
 
 
 
+
 Host spadtest
     HostName 172.16.140.34
     User ansible
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -38,10 +33,12 @@ Host cluster.prod
 
 
 
+
 Host cluster.lab
     HostName 172.16.140.92
     User devops
     IdentityFile ~/.ssh/devops
+
 
 
 
@@ -54,10 +51,12 @@ Host cluster.staging
 
 
 
+
 Host cluster.laboratory
     HostName 172.16.140.110
     User devops
     IdentityFile ~/.ssh/devops
+
 
 
 
@@ -71,10 +70,12 @@ Host cluster.junior
 
 
 
+
 Host spaddevmarcel2
     HostName 172.16.140.16
     User marcel
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -87,6 +88,7 @@ Host spaddevjunior
 
 
 
+
 Host spaddevgamzat
     HostName 172.16.140.88
 	User devops
@@ -95,10 +97,12 @@ Host spaddevgamzat
 
 
 
+
 Host spaddevabdul
     HostName 172.16.140.79
 	User abdul
 	IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -112,10 +116,12 @@ Host spaddevanton
 
 
 
+
 Host proxmox
     HostName 172.16.140.115
     User root
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -128,10 +134,12 @@ Host spadbackup
 
 
 
+
 Host snuekeycloak
     HostName 10.172.16.11
     User ansible
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -145,6 +153,7 @@ Host gitlab
 
 
 
+
 Host gitlab.towelie.dev
     HostName gitlab.towelie.dev
     User git
@@ -155,9 +164,11 @@ Host gitlab.towelie.dev
 
 
 
+
 Host bitbucket.org
     User git
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -170,11 +181,13 @@ Host gitlab.lit-beratung.de
 
 
 
+
 Host ssh.dev.azure.com
     HostName ssh.dev.azure.com
     User git
     IdentityFile ~/.ssh/azure
 	
+
 
 
 
@@ -191,6 +204,7 @@ Host github.com
 
 
 
+
 Host spesen-demo
     HostName 172.16.140.112
     User ansible
@@ -198,6 +212,7 @@ Host spesen-demo
 
 
 ###### Private [Clusters]
+
 
 
 
@@ -210,10 +225,12 @@ Host homelab.cluster
 
 
 
+
 Host tailscale/backup
 	HostName 100.109.161.28
     User cellexec
     IdentityFile ~/.ssh/cellexec
+
 
 
 
@@ -226,6 +243,7 @@ Host tailscale/cluster-production
 
 
 
+
 Host tailscale/dev
 	HostName 100.82.180.30
     User cellexec
@@ -234,10 +252,12 @@ Host tailscale/dev
 
 
 
+
 Host tailscale/gitlab
 	HostName 100.73.145.19
     User cellexec
     IdentityFile ~/.ssh/cellexec
+
 
 
 
@@ -250,10 +270,12 @@ Host tailscale/iphone173
 
 
 
+
 Host tailscale/k8s-production
 	HostName 100.124.163.39
     User cellexec
     IdentityFile ~/.ssh/cellexec
+
 
 
 
@@ -266,7 +288,14 @@ Host tailscale/laptop
 
 
 
+
 Host tailscale/proxmox
 	HostName 100.118.36.116
     User root
     IdentityFile ~/.ssh/cellexec
+
+Host kbc-cloud
+    HostName 132.164.80.78
+    User mmaier
+    IdentityFile ~/.ssh/lit_marcel
+
