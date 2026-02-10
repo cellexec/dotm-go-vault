@@ -1,0 +1,225 @@
+export TERM=xterm-256color
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+# Enable Powerlevel10k
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Load plugin manager (zinit)
+ZINIT_HOME="$HOME/.local/share/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Reload the zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Install plugins
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light jeffreytse/zsh-vi-mode
+
+# Autoload completions
+autoload -U compinit && compinit
+
+# History settings
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+# Options
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Colors for completions
+zstyle ':completions:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completions:*' list-colors '${(s.:.)LS_COLORS}'
+
+# Source powerlevel 10k config
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+
+################
+# User section
+################
+
+# Extend Path variables
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/lazydocker/"
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/bin/"
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/bin/nvim/bin"
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/bin/flux/"
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/bin/fzf/"
+export PATH="$PATH:$HOME/projects/lit/kickstart.linux/bin/k9s/"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:/sbin"
+export PATH="$PATH:/bin"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export DOTM_DIR="~/projects/private/dotm-go-vault/"
+
+
+# Program alias
+alias c="vim ~/.zshrc && reload"
+alias sc="vim ~/.ssh/config"
+alias fr="flux reconcile kustomization flux-system -n flux-system --with-source"
+alias lg="lazygit"
+alias ee="exit"
+alias k="kubectl"
+alias gl="git log --decorate --oneline --graph"
+alias ls="ls --color"
+alias ll="ls -la"
+alias vim="nvim"
+alias ta="tmux attach"
+alias tk="tmux kill-session"
+alias tl="tmux list-session"
+alias ldk='lazydocker'
+alias rmall="rm -rf ./* && rm -rf ./.*"
+alias docker-cleanall='docker stop $(docker ps -aq) 2>/dev/null && docker rm $(docker ps -aq) 2>/dev/null && docker rmi -f $(docker images -q) 2>/dev/null'
+
+# Command alias
+alias vpn='f=$(find ~/vpn -type f -name "*.ovpn" | fzf) && [ -n "$f" ] && sudo openvpn --config "$f"'
+alias gacp="[ -d .git ] && git add . && git commit && git pull && git push"
+alias gacpl="[ -d .git ] && git add . && git commit -m 'update' && git pull && git push"
+alias gacpp="[ -d .git ] && git add . && git commit -m 'update Lazy Plugins' && git pull && git push"
+alias n='
+SCRIPT=$(jq -r ".scripts | keys[]" package.json | fzf --prompt="Select a script: ") && \
+[ -n "$SCRIPT" ] && npm run "$SCRIPT"
+'
+alias reload="source ~/.zshrc"
+alias stop_all_docker='docker ps -aq | xargs docker stop'
+
+# Fzf (Fuzzy Finder)
+export FZF_DEFAULT_OPTS='--layout=reverse --border --preview-window=wrap --height=40%'
+eval "$(fzf --zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Nvm (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+unalias s 2>/dev/null
+
+s() {
+    if [ $# -eq 0 ]; then
+        # Extract host names from SSH config file
+        # Remove comments, empty lines, and get only Host lines
+        # Exclude wildcards and patterns (lines containing * or ?)
+        host=$(grep "^Host " ~/.ssh/config | 
+               grep -v "[*?]" | 
+               sed 's/Host //' | 
+               tr ' ' '\n' | 
+               fzf --height 40% --reverse)
+        
+        if [ -n "$host" ]; then
+            # If a host was selected, connect with X11 forwarding
+            command ssh -X "$host"
+        fi
+    else
+        # If arguments were provided, pass them through to ssh
+        command ssh "$@"
+    fi
+}
+
+alias s="s"
+
+unalias p 2>/dev/null
+p() {
+  local dir
+  dir=$(find ~/projects/lit/ -maxdepth 1 -type d | fzf)
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  fi
+}
+
+alias p="p"
+
+unalias pa 2>/dev/null
+pa() {
+  local dir
+  dir=$(find ~/projects/azure/ -maxdepth 1 -type d | fzf)
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  fi
+}
+
+alias pa="pa"
+
+unalias pp 2>/dev/null
+pp() {
+  local dir
+  dir=$(find ~/projects/private/ -maxdepth 1 -type d | fzf)
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  fi
+}
+
+alias pp="pp"
+
+unalias gsw 2>/dev/null
+gsw() {
+  local branch
+  branch=$(git branch --all --color=never | sed 's/^..//' | grep -v 'HEAD' | sort -u | fzf --prompt="Switch to branch: ")
+  if [[ -n "$branch" ]]; then
+    # Remove remote prefix if present (like "remotes/origin/foo")
+    branch=${branch#remotes/origin/}
+    git switch "$branch"
+  fi
+}
+
+alias gsw="gsw"
+
+unalias v 2>/dev/null
+v() {
+    # Use proper globbing for Zsh
+    local vaults
+    vaults=(~/vaults/*(/))  # (/) restricts to directories only
+
+    if (( ${#vaults[@]} == 0 )); then
+        echo "No vaults found in ~/vaults/"
+        return 1
+    elif (( ${#vaults[@]} == 1 )); then
+        cd "${vaults[1]}" || return
+    else
+        # Multiple vaults → fzf
+        local dir
+        dir=$(printf "%s\n" "${vaults[@]}" | fzf) || return
+        cd "$dir" || return
+    fi
+
+    vim
+}
+
+alias v="v"
+export KUBECONFIG="/home/marcel/.kube/aks-config"
+
+# Show neofetch on interactive login
+if [[ $- == *i* ]] && command -v neofetch >/dev/null; then
+    neofetch --off --color_blocks off
+fi
+
+
+# bun completions
+[ -s "/home/marcel/.bun/_bun" ] && source "/home/marcel/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
