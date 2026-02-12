@@ -1,0 +1,39 @@
+Host cluster.prod
+    HostName 172.16.140.116
+    User devops
+    IdentityFile ~/.ssh/devops
+
+
+
+
+
+
+Host cluster.lab
+    HostName 172.16.140.92
+    User devops
+    IdentityFile ~/.ssh/devops
+
+
+
+
+
+
+Host cluster.staging
+    HostName 172.16.140.117
+    User devops
+    IdentityFile ~/.ssh/devops
+
+
+
+
+
+
+Host cluster.laboratory
+    HostName 172.16.140.110
+    User devops
+    IdentityFile ~/.ssh/devops
+
+
+
+
+

@@ -1,0 +1,112 @@
+Host gitlab.towelie.dev
+    HostName gitlab.towelie.dev
+    User git
+    Port 2222
+    IdentityFile ~/.ssh/cellexec
+
+##### Work [Git]
+
+
+
+
+
+Host github.com
+    User git
+    IdentityFile ~/.ssh/cellexec
+
+
+
+		
+
+
+
+
+
+
+
+Host homelab.cluster
+	HostName 192.168.178.57
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+###### Private [Tailscale]
+
+
+
+
+
+Host tailscale/backup
+	HostName 100.109.161.28
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/cluster-production
+	HostName 100.89.13.54
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/dev
+	HostName 100.82.180.30
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+	
+
+
+
+
+
+Host tailscale/gitlab
+	HostName 100.73.145.19
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/iphone173
+	HostName 100.105.32.38
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/k8s-production
+	HostName 100.124.163.39
+    User cellexec
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/laptop
+	HostName 100.99.181.10
+    User marcel
+    IdentityFile ~/.ssh/cellexec
+
+
+
+
+
+
+Host tailscale/proxmox
+	HostName 100.118.36.116
+    User root
+    IdentityFile ~/.ssh/cellexec
+

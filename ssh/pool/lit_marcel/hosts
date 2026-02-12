@@ -7,10 +7,12 @@ Host snuelx08
 
 
 
+
 Host fob/prod.cluster
     HostName 192.168.1.80
     User sw
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -21,41 +23,6 @@ Host spadtest
     User ansible
     IdentityFile ~/.ssh/lit_marcel
 
-
-
-
-
-Host cluster.prod
-    HostName 172.16.140.116
-    User devops
-    IdentityFile ~/.ssh/devops
-
-
-
-
-
-Host cluster.lab
-    HostName 172.16.140.92
-    User devops
-    IdentityFile ~/.ssh/devops
-
-
-
-
-
-Host cluster.staging
-    HostName 172.16.140.117
-    User devops
-    IdentityFile ~/.ssh/devops
-
-
-
-
-
-Host cluster.laboratory
-    HostName 172.16.140.110
-    User devops
-    IdentityFile ~/.ssh/devops
 
 
 
@@ -71,10 +38,12 @@ Host cluster.junior
 
 
 
+
 Host spaddevmarcel2
     HostName 172.16.140.16
     User marcel
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -89,6 +58,7 @@ Host spaddevjunior
 
 
 
+
 Host spaddevgamzat
     HostName 172.16.140.88
 	User devops
@@ -98,10 +68,12 @@ Host spaddevgamzat
 
 
 
+
 Host spaddevabdul
     HostName 172.16.140.79
 	User abdul
 	IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -117,10 +89,12 @@ Host spaddevanton
 
 
 
+
 Host proxmox
     HostName 172.16.140.115
     User root
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -135,10 +109,12 @@ Host spadbackup
 
 
 
+
 Host snuekeycloak
     HostName 10.172.16.11
     User ansible
     IdentityFile ~/.ssh/lit_marcel
+
 
 
 
@@ -154,16 +130,6 @@ Host gitlab
 
 
 
-Host gitlab.towelie.dev
-    HostName gitlab.towelie.dev
-    User git
-    Port 2222
-    IdentityFile ~/.ssh/cellexec
-
-##### Work [Git]
-
-
-
 
 Host bitbucket.org
     User git
@@ -173,32 +139,11 @@ Host bitbucket.org
 
 
 
+
 Host gitlab.lit-beratung.de
     HostName 172.16.140.114
     User git
     IdentityFile ~/.ssh/lit_marcel
-
-
-
-
-
-Host ssh.dev.azure.com
-    HostName ssh.dev.azure.com
-    User git
-    IdentityFile ~/.ssh/azure
-	
-
-
-
-
-
-Host github.com
-    User git
-    IdentityFile ~/.ssh/cellexec
-
-
-
-		
 
 
 
@@ -216,83 +161,6 @@ Host spesen-demo
 
 
 
-Host homelab.cluster
-	HostName 192.168.178.57
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-###### Private [Tailscale]
-
-
-
-
-Host tailscale/backup
-	HostName 100.109.161.28
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/cluster-production
-	HostName 100.89.13.54
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/dev
-	HostName 100.82.180.30
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-	
-
-
-
-
-Host tailscale/gitlab
-	HostName 100.73.145.19
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/iphone173
-	HostName 100.105.32.38
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/k8s-production
-	HostName 100.124.163.39
-    User cellexec
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/laptop
-	HostName 100.99.181.10
-    User marcel
-    IdentityFile ~/.ssh/cellexec
-
-
-
-
-
-Host tailscale/proxmox
-	HostName 100.118.36.116
-    User root
-    IdentityFile ~/.ssh/cellexec
 
 Host kbc-cloud
     HostName 132.164.80.78
